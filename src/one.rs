@@ -3,19 +3,16 @@ use std::vec;
 const NULL: char = '\0';
 
 pub fn find_calibration_value(line: &str) -> u32 {
-    let mut cal_val: Vec<char> = vec![NULL, NULL];
+    let mut cal_val: Vec<char> = Vec::new();
     for c in line.chars() {
-        if c <= '9' {
-            match cal_val[0] {
-                NULL => cal_val[0] = c,
-                _ => cal_val[1] = c,
-            }
+        if c.is_ascii_digit() {
+            cal_val.push(c);
+        } else {
         }
     }
-    if cal_val[1] == NULL {
-        cal_val[1] = cal_val[0];
-    }
-    let joined_cal: String = cal_val.iter().collect();
+
+    let joined_cal =
+        (*cal_val.first().unwrap()).to_string() + &(*cal_val.last().unwrap()).to_string();
     joined_cal.parse().unwrap()
 }
 
