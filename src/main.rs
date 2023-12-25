@@ -1,4 +1,6 @@
-pub mod one;
+use crate::days::one;
+
+pub mod days;
 pub mod utils;
 
 fn main() {
